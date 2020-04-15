@@ -2,20 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
-Route::get('/', function () {
-    return view('pages.index');
-});
+
+
+Route::get('/',"UriController@index");
 
 Route::get('/contact/us',"LoginController@getContact")->name('contact'); 
 Route::get('/about/us',"LoginController@getAbout")->name('about'); 
@@ -32,6 +22,10 @@ Route::post('/update/category/{id}',"LoginController@updateCategory");
 Route::get('/write/post',"PostController@writePost")->name('write.post'); 
 Route::post('/add/post',"PostController@addPost")->name('store.post');
 Route::get('/all/post',"PostController@allPost")->name('all.post');
+Route::get('/view/post/{id}',"PostController@viewPost");
+Route::get('/edit/post/{id}',"PostController@editPost");
+Route::post('/update/post/{id}',"PostController@updatePost");
+Route::get('/delete/post/{id}',"PostController@deletePost");
 
 
 /*
@@ -59,7 +53,7 @@ Route::get('/path',"UriController@index");
 
 //prefix
 Route::prefix('hkobir')->group(function () {
-   
+
         Route::get('/about',function () {
             return view('about');
             // return view('welcome');
@@ -69,7 +63,7 @@ Route::prefix('hkobir')->group(function () {
             return view('pages.contact');
             // return view('welcome');
         });
-    
+
 });
 
 
@@ -95,9 +89,9 @@ Route::get('/statusResponse', function () {
 Route::get('/log',"LoginController@getLog");
 
 //session management
-Route::post('/session/set/{name}',"SessionController@setSession");
-Route::post('/session/get/{name}',"SessionController@getSession");
-Route::post('/session/remove/{name}',"SessionController@removeSession");
+Route::get('/session/set/{name}',"SessionController@setSession");
+Route::get('/session/get/{name}',"SessionController@getSession");
+Route::get('/session/remove/{name}',"SessionController@removeSession");
 Route::get('/session/removeall',"SessionController@removeAllSession");
 
 
@@ -105,5 +99,15 @@ Route::get('/session/removeall',"SessionController@removeAllSession");
 Route::get('/uploadfile',"UploadFileController@index");
 Route::post('/uploadfile',"UploadFileController@showFile");
 */
+
+//grade caluclate
+
+Route::get('/calculate/grade',function () {             //rout with mkiddleaWare
+    return view('total_subject');
+});
+Route::post('/total/subject',"GradeController@getTotalSubject")->name('tot.subject');
+Route::post('/store/subject/{totSubject}',"GradeController@addSubject");
+
+
 
 ?>

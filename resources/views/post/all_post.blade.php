@@ -18,12 +18,12 @@
                 @foreach($post as $row)
                 <tr>
                     <td>{{$row->id}}</td>
-                    <td>{{$row->category_id}}</td>
-                    <td>{{$row->title}}</td>
+                    <td>{{$row->name}}</td>
+                    <td style="font-size:15px">{{$row->title}}</td>
                     <td><img src="{{URL::to($row->image)}}" style="width:40px;height:70px"/></td>
                     <td>
                         <a href="{{URL::to('/edit/post/'.$row->id)}}" class="btn btn-sm btn-info">Edit</a>
-                        <a href="{{URL::to('/delete/post/'.$row->id)}}" class="btn btn-sm btn-danger">Delete</a>
+                        <a href="{{URL::to('/delete/post/'.$row->id)}}" class="btn btn-sm btn-danger" id="delete">Delete</a>
                         <a href="{{URL::to('/view/post/'.$row->id)}}" class="btn btn-sm btn-success">View</a>
                     </td>
                 </tr>

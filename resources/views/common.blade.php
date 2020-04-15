@@ -119,7 +119,7 @@
         <script src="{{asset('public/frontend/vendor/jquery/jquery.min.js')}}"></script>
         
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-        
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
         <script src="{{asset('public/frontend/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
         
         
@@ -151,6 +151,29 @@
                     break;
             }
             @endif
+        </script>
+        <script>
+        $(document).on("click", "#delete", function(e){
+            e.preventDefault();
+            
+            var link = $(this).attr("href");   //link of clicked element
+            
+            Swal.fire({
+                title: 'Are you want to delete?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.value) {
+                    window.location.href = link;
+                }
+            })
+            
+        });
+        
         </script>
     </body>
 
